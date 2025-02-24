@@ -1,3 +1,7 @@
-from django.shortcuts import render
+from django.shortcuts import render, HttpResponse
 
-# Create your views here.
+def recipeList(request):
+    pass
+
+def recipe(request, num=1):
+    pass
