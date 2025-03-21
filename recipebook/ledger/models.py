@@ -13,15 +13,15 @@ class Ingredient(models.Model):
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    name = models.CharField(max_length=50)  
-    bio = models.TextField(max_length=255, blank=True)
+    name = models.CharField(max_length=50, default="")  
+    bio = models.TextField(max_length=255, blank=True, default="")
 
     def __str__(self):
         return '{}'.format(self.name)
 
 class Recipe(models.Model):
     name = models.CharField(max_length=50)
-    author = models.ForeignKey(Profile, on_delete=models.CASCADE)
+    author = models.ForeignKey(Profile, on_delete=models.CASCADE, default="")
     created_on = models.DateTimeField(auto_now_add=True)
     updated_on = models.DateTimeField(auto_now=True)
 
