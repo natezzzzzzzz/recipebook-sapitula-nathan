@@ -14,11 +14,16 @@
 
     <br>
 
-    {% for image in recipe.images.all %}
-        <li><img src="{{ image.image.url }}" alt="{{ image.description }}" width="200"></li>
-    {% endfor %}
+    <h3>Images:</h3>
+    <ul>
+        {% for image in recipe.images.all %}
+            <li><img src="{{ image.image.url }}" alt="{{ image.description }}" width="200"></li>
+        {% endfor %}
+    </ul>
 
     <br>
+
+    <p><a href="{% url 'imageAdd' num=recipe.id %}">Add an Image</a></p>
 
     <p><a href="{% url 'recipeList' %}">Return to Home</a></p>
 {% endblock %}

@@ -40,6 +40,16 @@ def recipeAdd(request):
 
     return render(request, "recipeAdd.html", {'recipeForm': recipeForm, 'recipeIngredientForm': recipeIngredientForm, 'ingredientForm': ingredientForm})
 
+@login_required
+def imageAdd(request, num):
+    recipe = Recipe.objects.get(id=num)
+    imageForm = ImageForm()
 
+    if request.method == 'POST':
+        imageForm = ImageForm(request.POST, request.FILES)
+        if imageForm.is_valid():
+            image = imageForm.save(commit=False)
+            image.recipe = recipe
+            image.save()
 
-
+    return render(request, "imageAdd.html", {'imageForm': imageForm, 'recipe': recipe})
