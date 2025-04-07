@@ -3,13 +3,27 @@
 {% block title %}{{ recipe.name }}{% endblock %}
 
 {% block content %}
-<h2>{{ recipe.name }}</h2>
-<p><b>Author:</b> {{ recipe.author.name }}</p>
+    <h2>{{ recipe.name }}</h2>
+    <p><b>Author:</b> {{ recipe.author.name }}</p>
+
     <ul>
         {% for ingredient in recipe.ingredients.all %}
             <li>{{ ingredient.ingredient.name }}: {{ ingredient.quantity }}</li>
         {% endfor %}
     </ul>
+
     <br>
+
+    <h3>Images:</h3>
+    <ul>
+        {% for image in recipe.images.all %}
+            <li><img src="{{ image.image.url }}" alt="{{ image.description }}" width="200"></li>
+        {% endfor %}
+    </ul>
+
+    <br>
+
+    <p><a href="{% url 'imageAdd' num=recipe.id %}">Add an Image</a></p>
+
     <p><a href="{% url 'recipeList' %}">Return to Home</a></p>
 {% endblock %}
