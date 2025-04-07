@@ -6,9 +6,14 @@ from django.contrib.auth.models import User
 class IngredientAdmin(admin.ModelAdmin):
     model = Ingredient
 
+class RecipeInline(admin.StackedInline):
+    model = RecipeImage
+    can_delete = False
+
 class RecipeAdmin(admin.ModelAdmin):
     list_display = ('id', 'name', 'created_on', 'updated_on')
     model = Recipe
+    inlines = [RecipeInline, ]
 
 class RecipeIngredientAdmin(admin.ModelAdmin):
     model = RecipeIngredient
